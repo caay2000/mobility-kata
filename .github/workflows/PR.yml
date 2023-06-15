@@ -1,0 +1,23 @@
+name: PR workflow
+
+on:
+  pull_request:
+    branches: [ '**' ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: 'gradle'
+      - name: Run Build
+        run: gradle clean spotlessCheck build --no-build-cache --parallel
