@@ -8,4 +8,6 @@ plugins {
 }
 
 rootProject.name = "mobility-kata"
-include("app", "list", "utilities")
+include(
+    "app",
+    "libs:payment-sdk")

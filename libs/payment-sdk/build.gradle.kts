@@ -9,5 +9,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":list"))
+//    api(project(":list"))
+    testImplementation("org.assertj:assertj-core")
 }
