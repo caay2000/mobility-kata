@@ -1,6 +1,13 @@
 package mobility.kata.libs.payment.sdk
 
+import mobility.kata.libs.payment.sdk.test.mother.CardCVCMother
+import mobility.kata.libs.payment.sdk.test.mother.CardHolderNameMother
+import mobility.kata.libs.payment.sdk.test.mother.CardMonthMother
+import mobility.kata.libs.payment.sdk.test.mother.CardNumberMother
+import mobility.kata.libs.payment.sdk.test.mother.CardYearMother
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -20,6 +27,17 @@ class CardNumberTest {
         CardNumber(value)
     }
 
+    @Test
+    fun `valid card number using mother`() {
+        CardNumberMother.validCard()
+    }
+
+    @Test
+    fun `invalid card number using mother`() {
+        val cardNumber = CardNumberMother.registerFailingCard()
+        assertThat(cardNumber.value).endsWith("9")
+    }
+
     @ParameterizedTest(name = "invalid card month for {0}")
     @ValueSource(strings = ["January", "1", "13", "00", ""])
     fun `invalid card month throws exception`(value: String) {
@@ -34,8 +52,13 @@ class CardNumberTest {
         CardMonth(value)
     }
 
+    @Test
+    fun `valid card month using mother`() {
+        CardMonthMother.random()
+    }
+
     @ParameterizedTest(name = "invalid card year for {0}")
-    @ValueSource(strings = ["2019", "2040", "year", ""])
+    @ValueSource(strings = ["2019", "2070", "year", ""])
     fun `invalid card year throws exception`(value: String) {
         assertThatThrownBy { CardYear(value) }
             .hasMessage("Invalid cardYear [$value]")
@@ -46,6 +69,11 @@ class CardNumberTest {
     @ValueSource(strings = ["2020", "2039"])
     fun `valid card year`(value: String) {
         CardYear(value)
+    }
+
+    @Test
+    fun `valid card year using mother`() {
+        CardYearMother.nonExpired()
     }
 
     @ParameterizedTest(name = "invalid card cvc for {0}")
@@ -62,6 +90,11 @@ class CardNumberTest {
         CardCVC(value)
     }
 
+    @Test
+    fun `valid card cvc using mother`() {
+        CardCVCMother.random()
+    }
+
     @ParameterizedTest(name = "invalid card holder Name for {0}")
     @ValueSource(strings = ["", " ", "anything with numbers 2", "more than 40 chars should throw an except"])
     fun `invalid card holder Name throws exception`(value: String) {
@@ -74,5 +107,10 @@ class CardNumberTest {
     @ValueSource(strings = ["Any length from two to forty", "spaces included"])
     fun `valid card holder Name`(value: String) {
         CardHolderName(value)
+    }
+
+    @Test
+    fun `valid card holder name using mother`() {
+        CardHolderNameMother.random()
     }
 }

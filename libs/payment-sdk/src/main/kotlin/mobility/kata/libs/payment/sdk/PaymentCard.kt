@@ -10,7 +10,7 @@ data class PaymentCard(
 
 data class CardNumber(val value: String) {
 
-    private val regex = Regex("(^4[0-9]{3} [0-9]{4} [0-9]{4} [0-9]{4})|(^5[1-5][0-9]{2} [0-9]{4} [0-9]{4} [0-9]{4})\$")
+    private val regex = Regex("(^4[0-9]{3} [0-9]{4} [0-9]{4} [0-9]{4})|(^5[0-5][0-9]{2} [0-9]{4} [0-9]{4} [0-9]{4})\$")
 
     init {
         if (regex.matches(value).not()) {
@@ -34,7 +34,7 @@ data class CardMonth(val value: String) {
     override fun toString(): String = value
 }
 data class CardYear(val value: String) {
-    private val regex = Regex("^20(2[0-9]|3[0-9])\$")
+    private val regex = Regex("^20([2-6][0-9])\$")
 
     init {
         if (regex.matches(value).not()) {
@@ -57,7 +57,7 @@ data class CardCVC(val value: String) {
 }
 
 data class CardHolderName(val value: String) {
-    private val regex = Regex("^[a-z|A-Z| ]{2,40}\$")
+    private val regex = Regex("^[a-z|A-Z| |\\-]{2,40}\$")
 
     init {
         if (regex.matches(value).not()) {
