@@ -16,3 +16,17 @@ data class InvalidCardCVCException(val cardCVC: String) :
 
 data class InvalidCardHolderNameException(val cardHolderName: String) :
     PaymentClientException("Invalid cardHolderName [$cardHolderName]")
+
+class InvalidPaymentAmountException : PaymentClientException("Invalid paymentAmount. It cannot be less than 0,01")
+
+data class InvalidCardNumberRegistrationException(val card: PaymentCard) :
+    PaymentClientException("Card cannot be registered, invalid card number [${card.cardNumber.ofuscated}]")
+
+data class ExpiredPaymentCardRegistrationException(val card: PaymentCard) :
+    PaymentClientException("Card cannot be registered, expired card [${card.month}/${card.year}]")
+
+data class InvalidPaymentTokenException(val paymentToken: PaymentToken) :
+    PaymentClientException("Invalid Payment Token [$paymentToken]")
+
+data class PaymentTokenNotRegisteredException(val paymentToken: PaymentToken) :
+    PaymentClientException("Payment Token is not registered [$paymentToken]")

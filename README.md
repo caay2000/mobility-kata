@@ -42,8 +42,8 @@ Queremos un sistema de vehiculos privado para una ciudad/pueblo/empresa.
  - Los vehiculos se pueden llevar al almacen para mantenimiento.
  - Cada vehiculo en mantenimiento inoperable por usuarios y su condicion volvera al 100 una vez reparado.
  - Una vez devuelto a una estacion, volvera a ser operable por usuarios
-	
-	
+
+
 
 
 ## ANEXOS
@@ -52,7 +52,7 @@ Queremos un sistema de vehiculos privado para una ciudad/pueblo/empresa.
   - Card Number:
     - Numerico
     - Formato: `XXXX XXXX XXXX XXXX`
-    - Primer digito 4 o bien 51 a 55
+    - Primeros 2 digitos de 40 a 55
   - Card Month
     - Formato: `01`, `02`, `03` hasta `10`, `11`, `12`
   - Card Year
@@ -63,4 +63,7 @@ Queremos un sistema de vehiculos privado para una ciudad/pueblo/empresa.
   - Card Holder Name
     - Alfabetico
     - Longitud: Minima 2, Maxima 40
-       
+  - Simulacion de fallos
+    - Si la tarjeta termina en 999, la tarjeta fallara al registrarla
+    - Si la tarjeta termina en 99, la tarjeta se registrara correctamente, pero fallara 1 de cada 10 pagos, empezando con el primero
+    - Si la tarjeta termina en 9, la tarjeta se registrara correctamente, pero todos sus pagos seran fallidos

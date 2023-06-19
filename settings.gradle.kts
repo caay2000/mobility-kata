@@ -10,4 +10,6 @@ plugins {
 rootProject.name = "mobility-kata"
 include(
     "app",
-    "libs:payment-sdk")
+    "libs:payment-sdk",
+    "libs:payment-sdk-test"
+)
