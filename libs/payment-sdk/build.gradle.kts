@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":libs:payment-sdk-test"))
 
+    testImplementation(project(":libs:payment-sdk-test"))
     testImplementation("org.assertj:assertj-core")
 }
