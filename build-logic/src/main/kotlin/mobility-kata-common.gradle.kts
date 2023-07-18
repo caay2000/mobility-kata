@@ -5,7 +5,7 @@ plugins {
 }
 
 project.ext["kotlin_version"] = "1.8.21"
-project.ext["ktor_version"] = "2.3.0"
+project.ext["ktor_version"] = "2.3.2"
 project.ext["apache_commons_version"] = "1.10.0"
 project.ext["junit_jupiter_version"] = "5.9.3"
 project.ext["assertj_version"] = "3.24.2"
