@@ -109,7 +109,9 @@ class PaymentClientApiTest {
         mock.mockTransactionId(transactionId)
         val paymentToken = sut.register(PaymentCardMother.valid())
 
-        val result = sut.pay(PaymentRequest(token = paymentToken, amount = PaymentAmount(BigDecimal.TEN)))
-        assertThat(result).isEqualTo(PaymentResult(transactionId = transactionId, result = TransactionResult.SUCCESS))
+        repeat(10) {
+            val result = sut.pay(PaymentRequest(token = paymentToken, amount = PaymentAmount(BigDecimal.TEN)))
+            assertThat(result).isEqualTo(PaymentResult(transactionId = transactionId, result = TransactionResult.SUCCESS))
+        }
     }
 }
