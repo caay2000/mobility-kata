@@ -4,8 +4,9 @@ plugins {
     `kotlin-dsl`
 }
 
-project.ext.set("kotlin_version", "1.8.21")
-project.ext.set("spotless_version", "6.19.0")
+project.ext["kotlin_version"] =  "1.8.21"
+project.ext["spotless_version"] =  "6.20.0"
+project.ext["dependencies_version"] =  "0.47.0"
 
 repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
@@ -14,5 +15,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${project.ext["kotlin_version"]}")
+    implementation("org.jetbrains.kotlin:kotlin-serialization:${project.ext["kotlin_version"]}")
     implementation("com.diffplug.spotless:spotless-plugin-gradle:${project.ext["spotless_version"]}")
+    implementation("com.github.ben-manes:gradle-versions-plugin:${project.ext["dependencies_version"]}")
 }

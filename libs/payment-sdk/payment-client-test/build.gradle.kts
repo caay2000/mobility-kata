@@ -3,6 +3,5 @@ plugins {
 }
 
 dependencies {
-
     implementation(project(":libs:payment-sdk:payment-client"))
 }
