@@ -94,7 +94,9 @@ class PaymentClientApiTest {
             val result = sut.pay(PaymentRequest(token = paymentToken, amount = PaymentAmount(BigDecimal.TEN)))
             if (it == 0 || it == 10) {
                 assertThat(result.result).isEqualTo(TransactionResult.FAILED)
-            } else assertThat(result.result).isEqualTo(TransactionResult.SUCCESS)
+            } else {
+                assertThat(result.result).isEqualTo(TransactionResult.SUCCESS)
+            }
         }
     }
 
